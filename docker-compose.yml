@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+    rpi-monitor:
+        image: michaelmiklis/rpi-monitor
+        container_name: rpi-monitor
+        devices:
+            - /dev/vchiq:/dev/vchiq            
+        volumes:
+            - /opt/vc:/opt/vc
+            - /boot:/boot
+            - /sys:/dockerhost/sys:ro
+            - /etc:/dockerhost/etc:ro
+            - /proc:/dockerhost/proc:ro
+            - /usr/lib:/dockerhost/usr/lib:ro
+        ports:
+            - 8888:8888
+        restart: unless-stopped
